@@ -6,7 +6,7 @@ const {
   getProjects,
   updateProject,
   deleteProject
-} = require('../controllers/projectController');
+} = require('../projectController');
 
 router.post('/', auth, (req, res, next) => {
   console.log('[POST] /projects accessed');
