@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../middleware/authMiddleware');
+const auth = require('../authMiddleware');
 const {
   createProject,
   getProjects,
   updateProject,
   deleteProject
-} = require('../controllers/projectController');
+} = require('../projectController');
 
 router.post('/', auth, (req, res, next) => {
   console.log('[POST] /projects accessed');
