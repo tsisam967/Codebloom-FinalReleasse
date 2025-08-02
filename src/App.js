@@ -25,27 +25,59 @@ function App() {
 
   return (
     <Router>
-      <div style={{ padding: '20px' }}>
+      <div style={{ backgroundColor: '#f4f6fa', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <NavigationBar token={token} onLogout={handleLogout} />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<SignupForm />} />
-          <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
-          <Route path="/profile" element={token ? <Profile token={token} /> : <Navigate to="/login" />} />
-        </Routes>
+        <main style={styles.mainContent}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/signup" element={<SignupForm />} />
+            <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
+            <Route path="/profile" element={token ? <Profile token={token} /> : <Navigate to="/login" />} />
+          </Routes>
 
-        {token && (
-          <div style={{ marginTop: '30px' }}>
-            <ProjectForm token={token} />
-            <ProjectList token={token} />
-            <UpdateProject token={token} />
-            <DeleteProject token={token} />
-          </div>
-        )}
+          {token && (
+            <div style={styles.projectSection}>
+              <ProjectForm token={token} />
+              <ProjectList token={token} />
+              <UpdateProject token={token} />
+              <DeleteProject token={token} />
+            </div>
+          )}
+        </main>
+
+        <hr style={styles.footerLine} />
+        <footer style={styles.footer}>
+         © 2025 CodeBloom | Final Project by Tsinat – COMP229
+
+        </footer>
       </div>
     </Router>
   );
 }
+
+const styles = {
+  mainContent: {
+    padding: '40px 20px',
+    maxWidth: '1000px',
+    margin: '0 auto',
+    fontFamily: 'Arial, sans-serif',
+    flex: 1,
+  },
+  projectSection: {
+    marginTop: '40px',
+  },
+  footerLine: {
+    border: 'none',
+    borderTop: '2px solid black',
+    margin: '50px 60px 0',
+  },
+  footer: {
+    textAlign: 'center',
+    padding: '20px',
+    color: '#555',
+    fontSize: '14px',
+  },
+};
 
 export default App;

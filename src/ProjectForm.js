@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Login.css'; 
 
 function ProjectForm({ token }) {
   const [title, setTitle] = useState('');
@@ -9,7 +10,7 @@ function ProjectForm({ token }) {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:4000/projects', {
+      const response = await fetch('https://codebloom-backend.onrender.com/projects', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -21,7 +22,7 @@ function ProjectForm({ token }) {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage(' Project created successfully!');
+        setMessage('Project created successfully!');
         setTitle('');
         setDescription('');
       } else {
@@ -29,30 +30,35 @@ function ProjectForm({ token }) {
       }
 
     } catch (err) {
-      setMessage(' Something went wrong.');
+      setMessage('Something went wrong.');
     }
   };
 
   return (
-    <div>
-      <h2>Create New Project</h2>
-      <form onSubmit={handleCreate}>
+    <div className="login-container">
+      <form className="login-box" onSubmit={handleCreate}>
+        <h2>Create New Project</h2>
+
         <input
           type="text"
           placeholder="Project Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
-        /><br />
+        />
+
         <textarea
           placeholder="Project Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
-        ></textarea><br />
+          style={{ resize: 'vertical', minHeight: '80px' }}
+        ></textarea>
+
         <button type="submit">Create Project</button>
+
+        <p className="login-message">{message}</p>
       </form>
-      <p>{message}</p>
     </div>
   );
 }
