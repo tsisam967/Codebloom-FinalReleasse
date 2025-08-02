@@ -9,6 +9,11 @@ function Home() {
         <br />
         Sign up to get started or log in to manage your projects.
       </p>
+      
+      {/* CI/CD demo paragraph */}
+      <p style={styles.cicdNote}>
+         This paragraph was added as part of my CI/CD demonstration for Assignment 4.
+      </p>
     </div>
   );
 }
@@ -27,6 +32,12 @@ const styles = {
   description: {
     fontSize: '18px',
     color: '#555',
+  },
+  cicdNote: {
+    marginTop: '40px',
+    fontSize: '16px',
+    color: '#007bff',
+    fontStyle: 'italic',
   },
 };
 
